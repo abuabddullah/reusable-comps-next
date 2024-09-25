@@ -17,7 +17,7 @@ import { IoMdArrowDropdown, IoMdMenu } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
 
-const navItems = [
+const navItemsUp = [
   {
     name: "Dashboard",
     href: "/dashboard",
@@ -34,17 +34,17 @@ const navItems = [
       },
       {
         name: "Services",
-        href: "/landingPage/services",
+        href: "/dashboard/services",
       },
       {
         name: "Tech Tool Boxes",
-        href: "/landingPage/tech-tool-boxes",
+        href: "/dashboard/tech-tool-boxes",
       },
     ],
   },
   {
     name: "Works",
-    href: "/works",
+    href: "/dashboard/works",
     icon: <FaBriefcase className="mr-2" />,
   },
   {
@@ -54,27 +54,27 @@ const navItems = [
     dropdown: [
       {
         name: "Category",
-        href: "/blog/category",
+        href: "/dashboard/blog/category",
       },
       {
         name: "Blog",
-        href: "/blog",
+        href: "/dashboard/blog",
       },
     ],
   },
   {
     name: "FAQ",
-    href: "/faq",
+    href: "/dashboard/faq",
     icon: <MdQuestionMark className="mr-2" />,
   },
   {
     name: "Contacts",
-    href: "/contacts",
+    href: "/dashboard/contacts",
     icon: <FaRegPaperPlane className="mr-2" />,
   },
   {
     name: "User",
-    href: "/user",
+    href: "/dashboard/user",
     icon: <FaUsers className="mr-2" />,
   },
   {
@@ -84,28 +84,31 @@ const navItems = [
     dropdown: [
       {
         name: "Department",
-        href: "/career/department",
+        href: "/dashboard/career/department",
       },
       {
         name: "Job",
-        href: "/career/job",
+        href: "/dashboard/career/job",
       },
       {
         name: "Online Application",
-        href: "/career/application",
+        href: "/dashboard/career/application",
       },
     ],
   },
   {
     name: "Subscriptions",
-    href: "/subscriptions",
+    href: "/dashboard/subscriptions",
     icon: <IoMdMenu className="mr-2" />,
   },
   {
     name: "Client Review",
-    href: "/client-review",
+    href: "/dashboard/client-review",
     icon: <FaRegStar className="mr-2" />,
   },
+];
+
+const navItemsDown = [
   {
     name: "Settings",
     href: "/dashboard/settings",
@@ -131,9 +134,9 @@ const DashBoardSideBar = ({ isSidebarOpen, openDropdown, toggleDropdown }) => {
             className="w-full" // Add w-full to make it take full width
           />
         </div>
-        <nav className="mt-0">
+        <nav className="min-h-screen">
           <ul className="space-y-2 px-6">
-            {navItems.map((item, index) => {
+            {navItemsUp.map((item, index) => {
               if (item.dropdown) {
                 return (
                   <li key={index}>
@@ -154,7 +157,7 @@ const DashBoardSideBar = ({ isSidebarOpen, openDropdown, toggleDropdown }) => {
                             <li key={subIndex}>
                               <Link
                                 href={subItem.href}
-                                className="block p-2 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white  text-sm"
+                                className="block p-2 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white"
                               >
                                 {subItem.name}
                               </Link>
@@ -170,7 +173,7 @@ const DashBoardSideBar = ({ isSidebarOpen, openDropdown, toggleDropdown }) => {
                 <li key={index}>
                   <Link
                     href={item.href}
-                    className="flex items-center p-3 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white  text-sm "
+                    className="flex items-center p-3 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white "
                   >
                     {item.icon}
                     {item.name}
@@ -179,6 +182,56 @@ const DashBoardSideBar = ({ isSidebarOpen, openDropdown, toggleDropdown }) => {
               );
             })}
           </ul>
+          <div>
+            <hr />
+            <ul className="space-y-2 px-6">
+              {navItemsDown.map((item, index) => {
+                if (item.dropdown) {
+                  return (
+                    <li key={index}>
+                      <button
+                        onClick={() => toggleDropdown(item.name)}
+                        className="flex justify-between items-center w-full p-3 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white "
+                      >
+                        <div className="flex items-center">
+                          {item.icon}
+                          <span>{item.name}</span>
+                        </div>
+                        <IoMdArrowDropdown size={20} />
+                      </button>
+                      {openDropdown === item.name && (
+                        <ul className="pl-5 space-y-2">
+                          {item.dropdown.map((subItem, subIndex) => {
+                            return (
+                              <li key={subIndex}>
+                                <Link
+                                  href={subItem.href}
+                                  className="block p-2 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white"
+                                >
+                                  {subItem.name}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
+                    </li>
+                  );
+                }
+                return (
+                  <li key={index}>
+                    <Link
+                      href={item.href}
+                      className="flex items-center p-3 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white "
+                    >
+                      {item.icon}
+                      {item.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </nav>
       </aside>
     </>

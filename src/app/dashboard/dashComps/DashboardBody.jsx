@@ -21,7 +21,7 @@ const DashboardBody = ({ children }) => {
   };
   return (
     <section>
-      <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
+      <div className="flex flex-col lg:flex-row min-h-screen">
         {/* Sidebar */}
         <DashBoardSideBar
           openDropdown={openDropdown}
@@ -37,7 +37,7 @@ const DashboardBody = ({ children }) => {
           />
 
           {/* Main Content starts */}
-          {children}
+          <div className="p-8">{children}</div>
           {/* Main Content ends */}
         </div>
 

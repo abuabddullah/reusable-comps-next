@@ -41,11 +41,11 @@ const GlancesTable = ({ handleToggle }) => {
 
   return (
     <div className="list">
-      <div className="page-header flex justify-between items-center mb-4 bg-white p-4 md:p-6">
+      <div className="page-header flex justify-between items-center mb-4 bg-white p-4 md:p-6 shadow">
         <p className="text-xl md:text-2xl">Glances</p>
         <button
           onClick={() => handleToggle("add")}
-          className="create-btn text-white bg-green-500 rounded py-2 px-4"
+          className="create-btn text-dashPrimary border-dashPrimary border bg-white rounded py-2 px-4"
         >
           Add
         </button>

@@ -38,7 +38,7 @@ const DashSettingPageComp = () => {
     console.log(formData);
   };
   return (
-    <section className="bg-white shadow-md rounded-lg p-6">
+    <section className="bg-white p-6">
       <form onSubmit={handleSubmit}>
         <div className="my-6">
           <h2 className="text-2xl font-semibold">Update Settings</h2>

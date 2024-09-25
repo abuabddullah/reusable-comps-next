@@ -29,7 +29,7 @@ const DashboardBody = ({ children }) => {
           toggleDropdown={toggleDropdown}
         />
 
-        <div className="flex-1 md:p-8">
+        <div className="flex-1">
           {/* Header for dashboard */}
           <DashHeader
             openDropdown={openDropdown}

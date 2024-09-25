@@ -17,218 +17,167 @@ import { IoMdArrowDropdown, IoMdMenu } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
 
+const navItems = [
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+    icon: <FaHome className="mr-2" />,
+  },
+  {
+    name: "Landing Page",
+    href: "",
+    icon: <TbAntennaBars5 className="mr-2" />,
+    dropdown: [
+      {
+        name: "At A Glance",
+        href: "/dashboard/at-a-glance",
+      },
+      {
+        name: "Services",
+        href: "/landingPage/services",
+      },
+      {
+        name: "Tech Tool Boxes",
+        href: "/landingPage/tech-tool-boxes",
+      },
+    ],
+  },
+  {
+    name: "Works",
+    href: "/works",
+    icon: <FaBriefcase className="mr-2" />,
+  },
+  {
+    name: "Blog",
+    href: "",
+    icon: <FaBook className="mr-2" />,
+    dropdown: [
+      {
+        name: "Category",
+        href: "/blog/category",
+      },
+      {
+        name: "Blog",
+        href: "/blog",
+      },
+    ],
+  },
+  {
+    name: "FAQ",
+    href: "/faq",
+    icon: <MdQuestionMark className="mr-2" />,
+  },
+  {
+    name: "Contacts",
+    href: "/contacts",
+    icon: <FaRegPaperPlane className="mr-2" />,
+  },
+  {
+    name: "User",
+    href: "/user",
+    icon: <FaUsers className="mr-2" />,
+  },
+  {
+    name: "Career",
+    href: "",
+    icon: <AiOutlineMenuUnfold className="mr-2" />,
+    dropdown: [
+      {
+        name: "Department",
+        href: "/career/department",
+      },
+      {
+        name: "Job",
+        href: "/career/job",
+      },
+      {
+        name: "Online Application",
+        href: "/career/application",
+      },
+    ],
+  },
+  {
+    name: "Subscriptions",
+    href: "/subscriptions",
+    icon: <IoMdMenu className="mr-2" />,
+  },
+  {
+    name: "Client Review",
+    href: "/client-review",
+    icon: <FaRegStar className="mr-2" />,
+  },
+  {
+    name: "Settings",
+    href: "/dashboard/settings",
+    icon: <FaCog className="mr-2" />,
+  },
+];
+
 const DashBoardSideBar = ({ isSidebarOpen, openDropdown, toggleDropdown }) => {
   return (
     <>
       <aside
-        className={`w-full lg:w-1/5 bg-white shadow-md lg:static fixed ${
+        className={`w-full lg:w-1/5 bg-white lg:static fixed ${
           isSidebarOpen ? "left-0" : "-left-full"
-        } transition-all duration-300 ease-in-out`}
+        } transition-all duration-300 ease-in-out border-e`}
       >
-        <div className="p-4 flex justify-between items-center border-b">
+        <div className="flex items-center p-6">
           <Image
-            src="https://jmctl-api.bdcare.vip/uploads/company/1725884397.png" // Replace with your logo
-            alt="Company Logo"
-            className="max-h-32 w-full"
-            width={100}
-            height={100}
+            src="https://www.hrm-api.bdcare.vip/uploads/logo/Tech-logo.png"
+            alt="HRM Logo"
+            layout="responsive" // Make the image responsive
+            width={150} // Original width of the image
+            height={50} // Original height of the image
+            className="w-full" // Add w-full to make it take full width
           />
         </div>
-        <nav className="mt-5">
-          <ul className="space-y-2">
-            <li>
-              <Link
-                href="/dashboard"
-                className="flex items-center p-3 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-              >
-                <FaHome className="mr-2" />
-                Dashboard
-              </Link>
-            </li>
-
-            {/* Dropdown for Landing Page */}
-            <li>
-              <button
-                onClick={() => toggleDropdown("landing")}
-                className="flex justify-between items-center w-full p-3 text-gray-600 hover:bg-gray-200 font-bold"
-              >
-                <div className="flex items-center">
-                  <TbAntennaBars5 className="mr-2" />
-                  <span>Landing Page</span>
-                </div>
-                <IoMdArrowDropdown size={20} />
-              </button>
-              {openDropdown === "landing" && (
-                <ul className="pl-5 space-y-2">
-                  <li>
-                    <Link
-                      href="/dashboard/at-a-glance"
-                      className="block p-2 text-gray-600 hover:bg-gray-200 font-bold text-sm"
+        <nav className="mt-0">
+          <ul className="space-y-2 px-6">
+            {navItems.map((item, index) => {
+              if (item.dropdown) {
+                return (
+                  <li key={index}>
+                    <button
+                      onClick={() => toggleDropdown(item.name)}
+                      className="flex justify-between items-center w-full p-3 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white "
                     >
-                      At A Glance
-                    </Link>
+                      <div className="flex items-center">
+                        {item.icon}
+                        <span>{item.name}</span>
+                      </div>
+                      <IoMdArrowDropdown size={20} />
+                    </button>
+                    {openDropdown === item.name && (
+                      <ul className="pl-5 space-y-2">
+                        {item.dropdown.map((subItem, subIndex) => {
+                          return (
+                            <li key={subIndex}>
+                              <Link
+                                href={subItem.href}
+                                className="block p-2 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white  text-sm"
+                              >
+                                {subItem.name}
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
                   </li>
-                  <li>
-                    <Link
-                      href="landingPage/services"
-                      className="block p-2 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-                    >
-                      Services
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="landingPage/tech-tool-boxes"
-                      className="block p-2 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-                    >
-                      Tech Tool Boxes
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-
-            <li>
-              <Link
-                href="/works"
-                className="flex items-center p-3 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-              >
-                <FaBriefcase className="mr-2" />
-                Works
-              </Link>
-            </li>
-
-            {/* Dropdown for Blog */}
-            <li>
-              <button
-                onClick={() => toggleDropdown("blog")}
-                className="flex justify-between items-center w-full p-3 text-gray-600 hover:bg-gray-200 font-bold"
-              >
-                <div className="flex items-center">
-                  <FaBook className="mr-2" />
-                  <span>Blog</span>
-                </div>
-                <IoMdArrowDropdown size={20} />
-              </button>
-              {openDropdown === "blog" && (
-                <ul className="pl-5 space-y-2">
-                  <li>
-                    <Link
-                      href="blog/category"
-                      className="block p-2 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-                    >
-                      Category
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="blog"
-                      className="block p-2 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-                    >
-                      Blog
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-
-            <li>
-              <Link
-                href="/faq"
-                className="flex items-center p-3 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-              >
-                <MdQuestionMark className="mr-2" />
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contacts"
-                className="flex items-center p-3 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-              >
-                <FaRegPaperPlane className="mr-2" />
-                Contacts
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/user"
-                className="flex items-center p-3 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-              >
-                <FaUsers className="mr-2" />
-                User
-              </Link>
-            </li>
-
-            {/* Dropdown for Career */}
-            <li>
-              <button
-                onClick={() => toggleDropdown("career")}
-                className="flex justify-between items-center w-full p-3 text-gray-600 hover:bg-gray-200 font-bold"
-              >
-                <div className="flex items-center">
-                  <AiOutlineMenuUnfold className="mr-2" />
-                  <span>Career</span>
-                </div>
-                <IoMdArrowDropdown size={20} />
-              </button>
-              {openDropdown === "career" && (
-                <ul className="pl-5 space-y-2">
-                  <li>
-                    <Link
-                      href="career/department"
-                      className="block p-2 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-                    >
-                      Department
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="career/job"
-                      className="block p-2 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-                    >
-                      Job
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="career/application"
-                      className="block p-2 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-                    >
-                      Online Application
-                    </Link>
-                  </li>
-                </ul>
-              )}
-            </li>
-
-            <li>
-              <Link
-                href="/subscriptions"
-                className="flex items-center p-3 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-              >
-                <IoMdMenu className="mr-2" />
-                Subscriptions
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/client-review"
-                className="flex items-center p-3 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-              >
-                <FaRegStar className="mr-2" />
-                Client Review
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/dashboard/settings"
-                className="flex items-center p-3 text-gray-600 hover:bg-gray-200 font-bold text-sm"
-              >
-                <FaCog className="mr-2" />
-                Settings
-              </Link>
-            </li>
+                );
+              }
+              return (
+                <li key={index}>
+                  <Link
+                    href={item.href}
+                    className="flex items-center p-3 text-dashCaviarTitleText rounded-lg text-lg hover:bg-dashPrimary hover:text-white  text-sm "
+                  >
+                    {item.icon}
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </aside>

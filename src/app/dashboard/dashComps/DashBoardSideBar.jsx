@@ -1,4 +1,5 @@
 import {
+  MdOutlinePermIdentity,
   MdQuestionMark,
   // MdRefresh,
 } from "react-icons/md";
@@ -22,6 +23,11 @@ const navItemsUp = [
     name: "Dashboard",
     href: "/dashboard",
     icon: <FaHome className="mr-2" />,
+  },
+  {
+    name: "Employees",
+    href: "/employees",
+    icon: <MdOutlinePermIdentity className="mr-2" />,
   },
   {
     name: "Landing Page",

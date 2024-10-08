@@ -1,9 +1,11 @@
 # REUSABLE-COMPONENTS-NEXTJS
-## DASHBOARD V-2
+
+## Next Image Component
+
 <div>
     <img
-    src="./src/assets/Screenshot 2024-09-25 150114.png"
-    alt="DASHBOARD V-1"
+    src="./src//assets/Image Component next js.png"
+    alt="Image Component"
     />
 </div>
 <br/>

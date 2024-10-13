@@ -1,13 +1,17 @@
-import React from "react";
+"use client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const DashboardLayout = ({ children }) => {
+const queryClient = new QueryClient();
+const ClientLayout = ({ children }) => {
   return (
     <>
-      <h1>nav bar</h1>
-      {children}
-      <h1>footer</h1>
+      <QueryClientProvider client={queryClient}>
+        <h1>nav bar</h1>
+        {children}
+        <h1>footer</h1>
+      </QueryClientProvider>
     </>
   );
 };
 
-export default DashboardLayout;
+export default ClientLayout;

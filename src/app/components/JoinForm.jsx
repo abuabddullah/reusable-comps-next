@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter
+import { useState } from "react";
 
 const JoinForm = () => {
   const [classCode, setClassCode] = useState("");
@@ -17,7 +17,7 @@ const JoinForm = () => {
   };
 
   return (
-    <div className="lg:max-w-4xl mx-auto my-12">
+    <div className="">
       <form onSubmit={handleJoinClass}>
         <label
           htmlFor="classCode"

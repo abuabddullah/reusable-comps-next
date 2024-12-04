@@ -24,7 +24,7 @@ const MeetingClassRoom = ({roomID}) => {
       sharedLinks: [
         {
           name: "Copy link",
-          url: `http://localhost:3000/class/${roomID}`,
+          url: `${process.env.NEXT_PUBLIC_ZEEGO_CLASS_LINK}/${roomID}`,
         },
       ],
       scenario: {
@@ -34,9 +34,9 @@ const MeetingClassRoom = ({roomID}) => {
   };
   return (
     <div
-        className="myCallContainer my-12 max-w-4xl mx-auto"
+        className=""
         ref={myMeeting}
-        // style={{ width: "100vw", height: "100vh" }}
+        style={{ width: "100vw", height: "100vh" }}
       ></div>
   )
 }

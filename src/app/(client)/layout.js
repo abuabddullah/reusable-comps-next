@@ -1,11 +1,9 @@
-import React from "react";
-
 const DashboardLayout = ({ children }) => {
   return (
     <>
-      <h1>nav bar</h1>
+      <h1 className="bg-blue-300 text-white p-4 text-center">nav bar</h1>
       {children}
-      <h1>footer</h1>
+      <h1 className="bg-blue-300 text-white p-4 text-center">footer</h1>
     </>
   );
 };
